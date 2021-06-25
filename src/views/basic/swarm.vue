@@ -11,6 +11,9 @@
         <el-button type="primary" icon="el-icon-plus" @click="onAddOrUpdate()">
           {{ $t('table.add') }}
         </el-button>
+        <el-button type="primary" icon="el-icon-plus" @click="onAddMore()">
+          批量添加
+        </el-button>
       </el-form>
     </div>
 
@@ -80,6 +83,13 @@
       @refreshList="getList()"
     />
 
+    <!-- 批量 -->
+    <add-more
+      v-if="addMoreVisible"
+      ref="addMore"
+      @refreshList="getList()"
+    />
+
   </div>
 </template>
 
@@ -87,10 +97,11 @@
 import Pagination from '@/components/Pagination'
 import { dataList } from '@/api/swarm'
 import SwarmAddOrUpdate from './components/SwarmAddOrUpdate'
+import addMore from './components/addMore'
 
 export default {
   name: 'Swarm',
-  components: { Pagination, SwarmAddOrUpdate },
+  components: { Pagination, SwarmAddOrUpdate, addMore },
   data() {
     return {
       list: [
@@ -105,7 +116,8 @@ export default {
         current: 1
       },
       loading: false,
-      addOrUpdateVisible: false
+      addOrUpdateVisible: false,
+      addMoreVisible: false
     }
   },
   created() {
@@ -134,6 +146,12 @@ export default {
       this.addOrUpdateVisible = true
       this.$nextTick(() => {
         this.$refs.addOrUpdate && this.$refs.addOrUpdate.init(data)
+      })
+    },
+    onAddMore() {
+      this.addMoreVisible = true
+      this.$nextTick(() => {
+        this.$refs.addMore && this.$refs.addMore.init()
       })
     },
     onDelete({ a, id }) {
