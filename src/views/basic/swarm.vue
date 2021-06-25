@@ -113,7 +113,7 @@ export default {
   },
   methods: {
     init() {
-      this.getList()
+      //this.getList()
     },
     getList(page = this.pages.current, loading = true) {
       if (this.loading) return

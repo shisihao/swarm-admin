@@ -667,7 +667,7 @@ export default {
   },
   methods: {
     init() {
-      this.getList()
+      //this.getList()
       this.autoOps.auto ? this.timeFuc() : clearInterval(this.timer)
     },
     getList(page = this.pages.current, loading = true) {

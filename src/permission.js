@@ -62,7 +62,7 @@ router.beforeEach(async(to, from, next) => {
           const accessRoutes = await store.dispatch('permission/generateRoutes', roles)
 
           // dynamically add accessible routes
-          getMenuNav()
+          /* getMenuNav()
             .then(response => {
               const serverRoute = response.data.menus || []
               serverRoute.forEach((serverValue) => {
@@ -82,8 +82,8 @@ router.beforeEach(async(to, from, next) => {
                 })
               })
               router.addRoutes(accessRoutes)
-            })
-
+            }) */
+          router.addRoutes(accessRoutes)
           // hack method to ensure that addRoutes is complete
           // set the replace: true, so the navigation will not leave a history record
           next({ ...to, replace: true })
